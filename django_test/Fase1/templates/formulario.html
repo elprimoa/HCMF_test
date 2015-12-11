@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<div class="container">
+	<br>
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			{% if error %}
+				<div class="alert alert-danger alert-dismissible" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<strong>¡Error!</strong> ¡Rellene todos los campos!
+				</div>
+			{% endif %}
+			<form action = "{{action}}" method = "POST">
+				{% csrf_token %}
+				{% for field in form %}
+					<div class="form-group">
+					{{ field.label_tag }} {{ field }}
+					</div>
+				{% endfor %}
+				<button type="submit" class="btn btn-default pull-right">Submit</button>
+			</form>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

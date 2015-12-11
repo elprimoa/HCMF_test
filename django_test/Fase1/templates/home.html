@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<div class="jumbotron">
+  <div class="container">
+    <h1>Prueba de desarrollo Django HCMFront</h1>
+    <p>A continuaci&oacute;n, seleccione el tipo de usuario:</p>
+  </div>
+</div>
+
+<div class="container">
+  <br>
+  <div class="row"></div>
+	<div class="col-md-6">
+		<a href="{% url 'fase1:empleado' %}">
+			<button type="button" class="btn btn-default pull-right">Empleado</button>
+		</a>
+	</div>
+	<div class="col-md-6">
+		<a href="{% url 'fase1:hhrr' %}">
+			<button type="button" class="btn btn-default pull-left">HHRR</button>
+		</a>
+	</div>
+</div>
+
+{% endblock %}
