@@ -17,6 +17,7 @@ class Vacante(models.Model):
 	fecha_creacion = models.DateField(default = date.today)
 	solicitante = models.CharField(max_length = 1024, default = "")
 	receptor = models.CharField(max_length = 1024, default = "")
+	reclutador = models.CharField(max_length = 1024, default = "")
 	def __str__(self):
 		return "Solicitud de " + self.solicitante
 

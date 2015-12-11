@@ -8,4 +8,6 @@ urlpatterns = [
 	url(r'^vacaciones/$', views.vacaciones, name='vacaciones'),
 	url(r'^empleado/$', views.empleado, name='empleado'),
 	url(r'^hhrr/$', views.hhrr, name='hhrr'),
-]
+	url(r'^vacanteEmpleado/$', views.vacanteEmpleado, name='vacanteEmpleado'),
+	url(r'^vacacionesEmpleado/$', views.vacacionesEmpleado, name='vacacionesEmpleado'),
+]	

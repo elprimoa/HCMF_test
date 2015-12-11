@@ -18,11 +18,36 @@ $(document).ready(function() {
 	$( "#from" ).datepicker("option", "dateFormat", "yy-mm-dd");
 	$( "#to" ).datepicker("option", "dateFormat", "yy-mm-dd");
 
+	$('#myModal').on('show.bs.modal', function (event) {
+		  var button = $(event.relatedTarget); // Button that triggered the modal
+		  var id = button.attr('id'); // Extract info from data-* attributes
+		  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+		  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+		  var modal = $(this);
+		  modal.find('#asignar').click(function() {
+		  	var reclutador = $("#reclutador").val();
+		  	if(reclutador === '') {
+		  		return;
+		  	}
+		  	$.ajax({
+				method: "PUT",
+				url: '/fase1/vacante/',
+				data: { 'id': id, 'reclutador': reclutador },
+				beforeSend: function(xhr) {
+			        xhr.setRequestHeader("X-CSRFToken", getCookie("csrftoken"));
+			    },
+			})
+			.done(function() {
+				location.reload();
+			});
+		  });
+		  //modal.find('.modal-body input').val(recipient)
+	})
 	
 });
 
 function eliminar(id, url) {
-		$.ajax({
+	$.ajax({
 		method: "DELETE",
 		url: url,
 		data: { 'id': id },
@@ -31,7 +56,7 @@ function eliminar(id, url) {
 	    },
 	})
 	.done(function() {
-		window.location = url;
+		location.reload();
 	});
 }
 

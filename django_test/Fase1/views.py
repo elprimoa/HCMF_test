@@ -28,11 +28,19 @@ def vacante(request):
 		else:
 			form = VacanteForm()
 
-		context = {'form': form, 'action': "/fase1/vacante/", 'error': error}
+		context = {'form': form, 'action': "/fase1/vacante/", 'error': error, 'actionlistado': "/fase1/vacanteEmpleado/"}
 		
 		return render(request, 'formulario.html', context)
 
 	else:
+
+		if(request.method == "PUT"):
+			params = QueryDict(request.body)
+			v = get_object_or_404(Vacante, id=params.get('id'))
+			v.reclutador = params.get('reclutador')
+			v.save()
+			return HttpResponse("Success")
+
 		if(request.method == "DELETE"):
 			params = QueryDict(request.body)
 			v = get_object_or_404(Vacante, id=params.get('id'))
@@ -59,7 +67,7 @@ def vacaciones(request):
 		else:
 			form = VacacionesForm()
 		
-		context = {'form': form, 'action': "/fase1/vacaciones/", 'error': error}
+		context = {'form': form, 'action': "/fase1/vacaciones/", 'error': error, 'actionlistado': "/fase1/vacacionesEmpleado/"}
 
 		return render(request, 'formulario.html', context)
 
@@ -81,3 +89,13 @@ def empleado(request):
 def hhrr(request):
 	request.session['user'] = 'hhrr'
 	return HttpResponseRedirect('/fase1/vacante')
+
+def vacanteEmpleado(request):
+	v = Vacante.objects.all()
+	context = {'solicitudes': v, 'vacante': True}
+	return render(request, 'listadoEmpleado.html', context)
+
+def vacacionesEmpleado(request):
+	v = Vacaciones.objects.all()
+	context = {'solicitudes': v, 'vacaciones': True}
+	return render(request, 'listadoEmpleado.html', context)

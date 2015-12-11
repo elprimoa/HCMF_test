@@ -4,7 +4,7 @@ from .models import Vacante, Vacaciones
 class VacanteForm(forms.ModelForm):
 	class Meta:
 		model = Vacante
-		exclude = ['fecha_creacion']
+		exclude = ['fecha_creacion', 'reclutador']
 	def __init__(self, *args, **kwargs):
 		super(VacanteForm, self).__init__(*args, **kwargs)
 		for field in iter(self.fields):

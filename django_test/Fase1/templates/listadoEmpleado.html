@@ -34,11 +34,6 @@
             {% if empleado.reclutador %}
               <p><b>Reclutador: </b>{{empleado.reclutador}}</p>
             {% endif %}
-
-            <button type="button" class="btn btn-danger" onclick="eliminar({{empleado.id}}, '/fase1/vacante/');">Eliminar</button>
-            {% if not empleado.reclutador %}
-              <button id="{{empleado.id}}" type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Aprobar</button>
-            {% endif %}
             
           {% else %}
 
@@ -49,36 +44,12 @@
             <p><b>Solicitante: </b>{{empleado.solicitante}}</p>
             <p><b>Receptor: </b>{{empleado.receptor}}</p>
 
-            <button type="button" class="btn btn-danger eliminar" onclick="eliminar({{empleado.id}}, '/fase1/vacaciones/');">Eliminar</button>
-
           {% endif %}
 
           </div>
         </div>
       </div>
     {% endfor %}
-    </div>
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Asignar reclutador</h4>
-          </div>
-          <div class="modal-body">
-            <form>
-              <div class="form-group">
-                <label for="recipient-name" class="control-label">Reclutador:</label>
-                <input type="text" class="form-control" id="reclutador">
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-            <button id="asignar" type="button" class="btn btn-primary">Asignar</button>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </div>
